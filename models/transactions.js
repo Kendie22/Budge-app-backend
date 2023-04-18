@@ -1,11 +1,12 @@
 
 module.exports = [
     {
-        id: "",
-        item_name: "",
-        amount: "",
-        date: "",
-        from: "",
-        category: ""
+
+        id: 1,
+        item_name: "Books",
+        amount: 20,
+        date: "11/11/11",
+        from: "Barnes and Nobles",
+        category: "Coding"
     }
 ]
