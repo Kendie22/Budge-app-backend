@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 app.get("/", (req, res) => {
-    res.send(`Welcome to Budget App! For Docs, please visit <a href="https://github.com/Kendie22/Budget-app-backend.git"> here </a> `
+    res.send(`Welcome to Budget App! For Docs, please visit <a href="https://github.com/Kendie22/Budget-app-backend.git">here</a> `
     );
 });
 
