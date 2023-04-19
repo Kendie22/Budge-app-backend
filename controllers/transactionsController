@@ -10,8 +10,15 @@ transactions.get("/", (req, res) => {
 
 //find the transaction they are looking for use res.params to access and find the correct transaction
 transactions.get("/:id", (req, res) => {
-    res.json(transactionsArray);
-});
+    const { id } = req.params()
+
+    if (transactionsArray.find(element => element.transactionId == id)) {
+        res.send(transactionsArray.find((element) => element.transactionId == id))
+    } else {
+        res.redirect("/400")
+    }
+
+})
 
 transactions.post("/", transactionsValidator, (req, res) => {
     transactionsArray.push(req.body);
@@ -20,9 +27,12 @@ transactions.post("/", transactionsValidator, (req, res) => {
 
 transactions.put("/:id", (req, res) => {
     const { id } = req.params;
-    if (transactionsArray) {
-        transactionsArray = req.body
-        res.status(200).json(transactionsArray);
+    const transactionInfo = transactionsArray.find((transaction) => transaction.id === id
+    );
+    const index = transactionsArray.index0f(transactionInfo);
+    if (transactionsArray[index]) {
+        res.json(transactionsArray[index])
+        res.status(200).json(transactionsArray[index]);
     } else {
         res.status(404).json({ error: "Not Found" })
     }
@@ -30,13 +40,14 @@ transactions.put("/:id", (req, res) => {
 
 transactions.delete("/:id", (req, res) => {
     const { id } = req.params;
-    if (transactions[id]) {
-        const deletedTransactions = transactionsArray.splice(id, 1); // returns deleted logs
-        res.status(200).json(transactionsArray)
+    if (transactionsArray[id]) {
+        transactionsArray.splice(id, 1);
+        res.status(200).json({ status: 200, message: "resource deleted" });
     } else {
         res.status(404).json({ error: "Not Found" });
     }
 });
+
 
 
 
